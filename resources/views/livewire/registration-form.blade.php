@@ -1,6 +1,5 @@
 <div class="container mt-5">
-   <div class="mt-5" style="margin-top: 6.6rem !important;
-">
+   <div class="mt-5" style="margin-top: 6.6rem !important;">
       <h3 class="text-center my-4 mt-5">Pendaftaran Peserta Didik Baru</h3>
    </div>
     @if (session()->has('message'))
@@ -41,7 +40,7 @@
                         <textarea class="form-control" wire:model="parent.address"></textarea>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Siswa</label>
+                        <label class="form-label">Calon Siswa</label>
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
@@ -65,14 +64,16 @@
                                         </td>
                                         <td><input type="date" class="form-control" wire:model="parent.students.{{ $index }}.birth_date"></td>
                                         <td><input type="text" class="form-control" wire:model="parent.students.{{ $index }}.birth_place"></td>
-                                        <td><button type="button" class="btn btn-danger" wire:click="removeStudent({{ $index }})">Hapus</button></td>
+                                        <td><button type="button" class="btn btn-danger" wire:click="removeStudent({{ $index }})"><i class="mdi mdi-delete"></i></button></td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
-                        <button type="button" class="btn btn-primary" wire:click="addStudent">Tambah Siswa</button>
+                        <div class="d-flex justify-content-between">
+                            <button type="button" class="btn btn-primary" wire:click="addStudent">Tambah Calon Siswa</button>
+                            <button type="submit" class="btn btn-success">Berikutnya</button>
+                        </div>
                     </div>
-                    <button type="submit" class="btn btn-success">Berikutnya</button>
                 </div>
             </div>
         </form>
@@ -86,12 +87,36 @@
                     <div class="row">
                         <div class="col-md-6">
                             <h6>Informasi Orang Tua</h6>
-                            <p><strong>NIK:</strong> {{ $parent['nik'] }}</p>
-                            <p><strong>Nama:</strong> {{ $parent['name'] }}</p>
-                            <p><strong>Email:</strong> {{ $parent['email'] }}</p>
-                            <p><strong>Telepon:</strong> {{ $parent['phone'] }}</p>
-                            <p><strong>Alamat:</strong> {{ $parent['address'] }}</p>
-                            <h6>Informasi Siswa</h6>
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <th>NIK</th>
+                                        <td>:</td>
+                                        <td>{{ $parent['nik'] }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Nama</th>
+                                        <td>:</td>
+                                        <td>{{ $parent['name'] }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Email</th>
+                                        <td>:</td>
+                                        <td>{{ $parent['email'] }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Telepon</th>
+                                        <td>:</td>
+                                        <td>{{ $parent['phone'] }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Alamat</th>
+                                        <td>:</td>
+                                        <td>{{ $parent['address'] }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <h6>Informasi Calon Siswa</h6>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
