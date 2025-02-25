@@ -32,8 +32,8 @@
     <div id="app-layout">
 
          @if( $isPortal)
-<!-- Topbar Start -->
-<div class="topbar-custom">
+        <!-- Topbar Start -->
+        <div class="topbar-custom">
                 <div class="container-fluid">
                     <div class="d-flex justify-content-between">
                         <ul class="list-unstyled topnav-menu mb-0 d-flex align-items-center">
@@ -225,6 +225,30 @@
 
             @include('components.layouts.sidebar') <!-- Ensure this line is correct and the sidebar file exists -->
 
+        @else
+            <nav class="navbar navbar-expand-lg fixed-top nav sticky bg-white" id="navbar">
+                <div class="container">
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                        <img src="{{ asset('assets/images/logo.png') }}" class="card-logo card-logo-light" alt="logo dark" height="45">
+                        <img src="{{ asset('assets/images/logo.png') }}" class="card-logo card-logo-dark" alt="logo light" height="45">
+                    </a>
+
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="navbar-navlist">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{{ url('/') }}">Form PPDB</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class=" btn btn-primary mt-2" href="{{ route('login') }}">Login</a>
+                            </li>
+                        </ul>
+                    </div><!-- end collapse -->
+                </div><!-- end container -->
+            </nav>
          @endif
         <!-- Start Page Content here -->
         {{ $slot }}
@@ -233,20 +257,20 @@
     <!-- END wrapper -->
 
     <!-- Vendor -->
-    <script src="{{ asset('assets') }}/libs/jquery/jquery.min.js"></script>
+    <!-- <script src="{{ asset('assets') }}/libs/jquery/jquery.min.js"></script>
     <script src="{{ asset('assets') }}/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('assets') }}/libs/simplebar/simplebar.min.js"></script>
     <script src="{{ asset('assets') }}/libs/node-waves/waves.min.js"></script>
     <script src="{{ asset('assets') }}/libs/waypoints/lib/jquery.waypoints.min.js"></script>
     <script src="{{ asset('assets') }}/libs/jquery.counterup/jquery.counterup.min.js"></script>
-    <script src="{{ asset('assets') }}/libs/feather-icons/feather.min.js"></script>
+    <script src="{{ asset('assets') }}/libs/feather-icons/feather.min.js"></script> -->
 
     <!-- Datatables js -->
-    <script src="{{ asset('assets') }}/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+    <!-- <script src="{{ asset('assets') }}/libs/datatables.net/js/jquery.dataTables.min.js"></script> -->
 
     <!-- dataTables.bootstrap5 -->
-    <script src="{{ asset('assets') }}/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
-    <script src="{{ asset('assets') }}/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <!-- <script src="{{ asset('assets') }}/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script> -->
+    <!-- <script src="{{ asset('assets') }}/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script> -->
 
     <!-- Apexcharts JS -->
     <!-- <script src="{{ asset('assets') }}/libs/apexcharts/apexcharts.min.js"></script> -->
@@ -258,19 +282,19 @@
     <!-- <script src="{{ asset('assets') }}/js/pages/dashboard.init.js"></script>   -->
 
     <!-- Datatable Demo App Js -->
-    <script src="{{ asset('assets') }}/js/pages/datatable.init.js"></script>
+    <!-- <script src="{{ asset('assets') }}/js/pages/datatable.init.js"></script> -->
 
     <!-- App js-->
-    <script src="{{ asset('assets') }}/js/app.js"></script>
+    <!-- <script src="{{ asset('assets') }}/js/app.js"></script> -->
 
     <!-- Script Component-->
     @livewireScripts
     <!-- Apexcharts JS -->
-    <script src="{{ asset('assets') }}/libs/apexcharts/apexcharts.min.js"></script>
+    <!-- <script src="{{ asset('assets') }}/libs/apexcharts/apexcharts.min.js"></script> -->
 
     <!-- for basic area chart -->
-    <script src="https://apexcharts.com/samples/assets/stock-prices.js"></script>
+    <!-- <script src="https://apexcharts.com/samples/assets/stock-prices.js"></script> -->
 
-    <script src="{{ asset('assets') }}/js/pages/dashboard.init.js"></script>
+    <!-- <script src="{{ asset('assets') }}/js/pages/dashboard.init.js"></script> -->
 </body>
 </html>

@@ -1,5 +1,18 @@
 <div class="container mt-5">
-    <h3 class="text-center my-4">Pendaftaran Peserta Didik Baru</h3>
+   <div class="mt-5" style="margin-top: 6.6rem !important;
+">
+      <h3 class="text-center my-4 mt-5">Pendaftaran Peserta Didik Baru</h3>
+   </div>
+    @if (session()->has('message'))
+        <div class="alert alert-success">
+            {{ session('message') }}
+        </div>
+    @endif
+    @if (session()->has('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
     @if ($currentStep == 1)
         <form wire:submit.prevent="nextStep">
             <div class="card">
@@ -105,6 +118,7 @@
                             <div class="mb-3">
                                 <label class="form-label">Pilih Metode Pembayaran</label>
                                 <select class="form-select" wire:model="paymentMethod">
+                                    <option value="">Pilih Metode Pembayaran</option>
                                     <option value="credit_card">Kartu Kredit</option>
                                     <option value="bank_transfer">Transfer Bank</option>
                                     <option value="paypal">PayPal</option>
@@ -123,3 +137,4 @@
         </form>
     @endif
 </div>
+

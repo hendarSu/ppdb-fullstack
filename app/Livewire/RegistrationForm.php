@@ -10,6 +10,9 @@ use App\Models\Payment;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\RegistrationNotification;
+use App\Models\User;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 class RegistrationForm extends Component
 {
@@ -24,9 +27,10 @@ class RegistrationForm extends Component
             ['name' => '', 'gender' => '', 'birth_date' => '', 'birth_place' => '']
         ]
     ];
-    public $paymentMethod;
+
     public $nominalPembayaran;
     public $totalPembayaran;
+    public $paymentMethod; // Add this line
 
     protected $listeners = ['calculateTotalPembayaran'];
 
@@ -40,7 +44,7 @@ class RegistrationForm extends Component
         'parent.students.*.gender' => 'required|string|in:male,female',
         'parent.students.*.birth_date' => 'required|date',
         'parent.students.*.birth_place' => 'required|string|max:255',
-        'paymentMethod' => 'required|string'
+        'paymentMethod' => 'required|string' // Ensure this rule is present
     ];
 
     public function mount()
@@ -79,7 +83,12 @@ class RegistrationForm extends Component
 
     public function submit()
     {
-        $this->validate();
+        // $this->validate();
+
+        if (is_null($this->paymentMethod) || empty($this->paymentMethod)) {
+            session()->flash('error', 'Metode pembayaran harus dipilih.');
+            return;
+        }
 
         DB::beginTransaction();
 
@@ -119,16 +128,25 @@ class RegistrationForm extends Component
                 'amount' => $this->totalPembayaran
             ]);
 
+            // Generate user for parent login
+            $password = Str::random(8);
+            $user = User::create([
+                'name' => $this->parent['name'],
+                'email' => $this->parent['email'],
+                'password' => Hash::make($password),
+                'isAdmin' => false
+            ]);
+
             DB::commit();
 
-            // Send notification
-            Notification::route('mail', $this->parent['email'])->notify(new RegistrationNotification($registration));
+            // Send notification with login details
+            Notification::route('mail', $this->parent['email'])->notify(new RegistrationNotification($registration, $user->email, $password));
 
             // Reset form
             $this->resetForm();
 
             // Redirect or show success message
-            session()->flash('message', 'Pendaftaran berhasil!');
+            session()->flash('message', 'Pendaftaran berhasil!, Silahkan cek email Anda untuk detail login dan kelengkapan Administrasi.');
         } catch (\Exception $e) {
             DB::rollBack();
             session()->flash('error', 'Pendaftaran gagal: ' . $e->getMessage());
