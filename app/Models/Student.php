@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Student extends Model
+{
+    use HasFactory;
+
+    protected $fillable = ['parent_id', 'name', 'gender', 'birth_date', 'birth_place', 'status', 'stage'];
+
+    public function parent()
+    {
+        return $this->belongsTo(Parent::class);
+    }
+
+    public function registrations()
+    {
+        return $this->belongsToMany(Registration::class, 'student_registrations');
+    }
+}
