@@ -1,0 +1,36 @@
+.pipeline-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.pipeline-step {
+    flex: 1;
+    padding: 20px;
+    border: 1px solid #ddd;
+    margin-right: 10px;
+    position: relative;
+    background: #f9f9f9;
+    text-align: center;
+}
+
+.pipeline-step::after {
+    content: '';
+    position: absolute;
+    right: -15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #007bff;
+}
+
+.pipeline-step:last-child {
+    margin-right: 0;
+}
+
+.pipeline-step:last-child::after {
+    display: none;
+}
