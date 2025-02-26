@@ -68,7 +68,7 @@
                 </li>
                 <li class="menu-title">Pengaturan</li>
                 <li>
-                    <a href="/payment-gateway-config">
+                    <a href="/payment-gateway-settings">
                         <i class="mdi mdi-cog"></i>
                         <span>Payment Gateway</span>
                     </a>

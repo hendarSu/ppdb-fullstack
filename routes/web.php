@@ -9,6 +9,7 @@ use App\Livewire\Menus;
 use App\Livewire\RegistrationForm;
 use App\Livewire\Auth\Login;
 use App\Http\Controllers\Auth\LoginController;
+use App\Livewire\PaymentGatewaySettings;
 
 Route::get('/login', Login::class)->name('login');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
@@ -16,7 +17,8 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', Home::class);
     Route::get('/counter', Counter::class);
-    Route::get('menus', Menus::class);
+    Route::get('/menus', Menus::class);
+    Route::get('/payment-gateway-settings', PaymentGatewaySettings::class);
 });
 
 Route::get('/welcome', function () {
