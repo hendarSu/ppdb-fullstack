@@ -104,12 +104,23 @@
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="navbar-navlist">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="{{ url('/') }}">Form PPDB</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class=" btn btn-primary mt-2" href="{{ route('login') }}">Login</a>
-                            </li>
+                            @guest
+                                <li class="nav-item">
+                                    <div class="btn-group">
+                                        <a class="btn btn-secondary btn-sm" href="{{ url('/') }}">Form Pendaftaran</a>
+                                        <a class="btn btn-success btn-sm" href="{{ route('login') }}">Login</a>
+                                    </div>
+                                </li>
+                            @else
+                                <li class="nav-item">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-primary btn-sm">
+                                            {{ Auth::user()->name }}
+                                        </button>
+                                        <a class="btn btn-danger btn-sm" href="{{ route('logout') }}">Logout</a>
+                                    </div>
+                                </li>
+                            @endguest
                         </ul>
                     </div><!-- end collapse -->
                 </div><!-- end container -->

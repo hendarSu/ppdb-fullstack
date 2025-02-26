@@ -174,8 +174,18 @@ class RegistrationForm extends Component
     public function render()
     {
         $isPortal = false; // Define the $isPortal variable
-        return view('livewire.registration-form', compact('isPortal'))->layout('components.layouts.app',
-        [
+
+        if (auth()->check()) {
+            $user = auth()->user();
+            $userProfile = ParentModel::where('email', $user->email)->first();
+            return view('livewire.profile-parents', compact('userProfile'))->layout('components.layouts.app', [
+                'title' => 'Profile Page',
+                'isPortal' => $isPortal,
+                'userProfile' => $userProfile
+            ]);
+        }
+
+        return view('livewire.registration-form', compact('isPortal'))->layout('components.layouts.app', [
             'title' => 'Registration Page',
             'isPortal' => $isPortal
         ]);
