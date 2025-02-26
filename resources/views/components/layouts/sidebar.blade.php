@@ -26,41 +26,51 @@
 
             <ul id="side-menu">
 
-                <li class="menu-title">Menu</li>
-
+                <li class="menu-title">Monitoring</li>
                 <li>
                     <a href="/dashboard">
                         <i class="mdi mdi-home"></i>
-                        <span>Home</span>
+                        <span>Dashboard</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="/menus">
-                        <i class="mdi mdi-menu"></i>
-                        <span>Menus</span>
+                    <a href="/reportings">
+                        <i class="mdi mdi-file-document"></i>
+                        <span>Laporan</span>
                     </a>
                 </li>
 
+                <li>
+                    <a href="/announcements">
+                        <i class="mdi mdi-broadcast"></i>
+                        <span>Pengumuman</span>
+                    </a>
+                </li>
                 <li class="menu-title">Feature</li>
-
-                <li>
-                    <a href="/students">
-                        <i class="mdi mdi-account"></i>
-                        <span>Orangtua Calon Murid</span>
-                    </a>
-                </li>
                 <li>
                     <a href="/parents">
+                        <i class="mdi mdi-account"></i>
+                        <span>Orangtua</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/students">
                         <i class="mdi mdi-account"></i>
                         <span>Calon Murid</span>
                     </a>
                 </li>
-
                 <li>
                     <a href="/payment-history">
                         <i class="mdi mdi-cash-multiple"></i>
                         <span>History Pembayaran</span>
+                    </a>
+                </li>
+                <li class="menu-title">Pengaturan</li>
+                <li>
+                    <a href="/payment-gateway-config">
+                        <i class="mdi mdi-cog"></i>
+                        <span>Payment Gateway</span>
                     </a>
                 </li>
 

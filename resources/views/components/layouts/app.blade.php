@@ -52,144 +52,10 @@
                         <ul class="list-unstyled topnav-menu mb-0 d-flex align-items-center">
 
                             <li class="dropdown notification-list topbar-dropdown">
-                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                    <i data-feather="bell" class="noti-icon"></i>
-                                    <span class="badge bg-danger rounded-circle noti-icon-badge">9</span>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-end dropdown-lg">
-
-                                    <!-- item-->
-                                    <div class="dropdown-item noti-title">
-                                        <h5 class="m-0">
-                                            <span class="float-end">
-                                                <a href="" class="text-dark">
-                                                    <small>Clear All</small>
-                                                </a>
-                                            </span>Notification
-                                        </h5>
-                                    </div>
-
-                                    <div class="noti-scroll" data-simplebar>
-
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item notify-item text-muted link-primary active">
-                                            <div class="notify-icon">
-                                                <!-- <img src="assets/images/users/user-12.jpg" class="img-fluid rounded-circle" alt="" /> -->
-                                            </div>
-                                            <div class="d-flex align-items-center justify-content-between">
-                                                <p class="notify-details">Carl Steadham</p>
-                                                <small class="text-muted">5 min ago</small>
-                                            </div>
-                                            <p class="mb-0 user-msg">
-                                                <small class="fs-14">Completed <span class="text-reset">Improve workflow in Figma</span></small>
-                                            </p>
-                                        </a>
-
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item notify-item text-muted link-primary">
-                                            <div class="notify-icon">
-                                                <img src="assets/images/users/user-2.jpg" class="img-fluid rounded-circle" alt="" />
-                                            </div>
-                                            <div class="notify-content">
-                                                <div class="d-flex align-items-center justify-content-between">
-                                                    <p class="notify-details">Olivia McGuire</p>
-                                                    <small class="text-muted">1 min ago</small>
-                                                </div>
-                                                <p class="mb-1 user-msg">
-                                                    <small class="fs-14">Added file to <span class="text-reset text-truncate">Create dark mode for our iOS</span></small>
-                                                </p>
-
-                                                <div class="d-flex mt-2 align-items-center">
-                                                    <div class="notify-sub-icon">
-                                                        <i class="mdi mdi-download-box text-dark"></i>
-                                                    </div>
-
-                                                    <div>
-                                                        <p class="notify-details mb-0">dark-themes.zip</p>
-                                                        <small class="text-muted">2.4 MB</small>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </a>
-
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item notify-item text-muted link-primary">
-                                            <div class="notify-icon">
-                                                <img src="assets/images/users/user-3.jpg" class="img-fluid rounded-circle" alt="" />
-                                            </div>
-                                            <div class="notify-content">
-                                                <div class="d-flex align-items-center justify-content-between">
-                                                    <p class="notify-details">Travis Williams</p>
-                                                    <small class="text-muted">7 min ago</small>
-                                                </div>
-                                                <p class="mb-1 user-msg">
-                                                    <small class="fs-14">Mentioned you in the <span class="text-reset text-truncate">Rewrite text-button</span></small>
-                                                </p>
-                                                <p class="noti-mentioned p-2 rounded-2 mb-0 mt-2"><span class="text-primary">@Patryk</span> Please make sure that you're....</p>
-                                            </div>
-                                        </a>
-
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item notify-item text-muted link-primary">
-                                            <div class="notify-icon">
-                                                <img src="assets/images/users/user-8.jpg" class="img-fluid rounded-circle" alt="" />
-                                            </div>
-                                            <div class="d-flex align-items-center justify-content-between">
-                                                <p class="notify-details">Violette Lasky</p>
-                                                <small class="text-muted">5 min ago</small>
-                                            </div>
-                                            <p class="mb-0 user-msg">
-                                                <small class="fs-14">Completed <span class="text-reset">Create new components</span></small>
-                                            </p>
-                                        </a>
-
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item notify-item text-muted link-primary">
-                                            <div class="notify-icon">
-                                                <img src="assets/images/users/user-5.jpg" class="img-fluid rounded-circle" alt="" />
-                                            </div>
-                                            <div class="d-flex align-items-center justify-content-between">
-                                                <p class="notify-details">Ralph Edwards</p>
-                                                <small class="text-muted">5 min ago</small>
-                                            </div>
-                                            <p class="mb-0 user-msg">
-                                                <small class="fs-14">Completed <span class="text-reset">Improve workflow in React</span></small>
-                                            </p>
-                                        </a>
-
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item notify-item text-muted link-primary">
-                                            <div class="notify-icon">
-                                                <img src="assets/images/users/user-6.jpg" class="img-fluid rounded-circle" alt="" />
-                                            </div>
-                                            <div class="notify-content">
-                                                <div class="d-flex align-items-center justify-content-between">
-                                                    <p class="notify-details">Jocab jones</p>
-                                                    <small class="text-muted">7 min ago</small>
-                                                </div>
-                                                <p class="mb-1 user-msg">
-                                                    <small class="fs-14">Mentioned you in the <span class="text-reset text-truncate">Rewrite text-button</span></small>
-                                                </p>
-                                                <p class="noti-mentioned p-2 rounded-2 mb-0 mt-2"><span class="text-reset">@Patryk</span> Please make sure that you're....</p>
-                                            </div>
-                                        </a>
-                                    </div>
-
-                                    <!-- All-->
-                                    <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item notify-all">
-                                        View all
-                                        <i class="fe-arrow-right"></i>
-                                    </a>
-
-                                </div>
-                            </li>
-
-                            <li class="dropdown notification-list topbar-dropdown">
                                 <a class="nav-link dropdown-toggle nav-user me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                     <!-- <img src="assets/images/users/user-11.jpg" alt="user-image" class="rounded-circle"> -->
                                     <span class="pro-user-name ms-1">
-                                        Christian <i class="mdi mdi-chevron-down"></i>
+                                        {{ Auth::user()->name }} <i class="mdi mdi-chevron-down"></i>
                                     </span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
@@ -211,7 +77,6 @@
                                         <i class="mdi mdi-location-exit fs-16 align-middle"></i>
                                         <span>Logout</span>
                                     </a>
-
                                 </div>
                             </li>
 
@@ -256,45 +121,41 @@
     </div>
     <!-- END wrapper -->
 
-    <!-- Vendor -->
-    <!-- <script src="{{ asset('assets') }}/libs/jquery/jquery.min.js"></script>
-    <script src="{{ asset('assets') }}/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ asset('assets') }}/libs/simplebar/simplebar.min.js"></script>
-    <script src="{{ asset('assets') }}/libs/node-waves/waves.min.js"></script>
-    <script src="{{ asset('assets') }}/libs/waypoints/lib/jquery.waypoints.min.js"></script>
-    <script src="{{ asset('assets') }}/libs/jquery.counterup/jquery.counterup.min.js"></script>
-    <script src="{{ asset('assets') }}/libs/feather-icons/feather.min.js"></script> -->
+    @if( $isPortal)
+        <!-- Vendor -->
+        <script src="{{ asset('assets') }}/libs/jquery/jquery.min.js"></script>
+        <script src="{{ asset('assets') }}/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="{{ asset('assets') }}/libs/simplebar/simplebar.min.js"></script>
+        <script src="{{ asset('assets') }}/libs/node-waves/waves.min.js"></script>
+        <script src="{{ asset('assets') }}/libs/waypoints/lib/jquery.waypoints.min.js"></script>
+        <script src="{{ asset('assets') }}/libs/jquery.counterup/jquery.counterup.min.js"></script>
+        <script src="{{ asset('assets') }}/libs/feather-icons/feather.min.js"></script>
 
-    <!-- Datatables js -->
-    <!-- <script src="{{ asset('assets') }}/libs/datatables.net/js/jquery.dataTables.min.js"></script> -->
+        <!-- Datatables js -->
+        <script src="{{ asset('assets') }}/libs/datatables.net/js/jquery.dataTables.min.js"></script>
 
-    <!-- dataTables.bootstrap5 -->
-    <!-- <script src="{{ asset('assets') }}/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script> -->
-    <!-- <script src="{{ asset('assets') }}/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script> -->
+        <!-- dataTables.bootstrap5 -->
+        <script src="{{ asset('assets') }}/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+        <script src="{{ asset('assets') }}/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
 
-    <!-- Apexcharts JS -->
-    <!-- <script src="{{ asset('assets') }}/libs/apexcharts/apexcharts.min.js"></script> -->
+        <!-- Apexcharts JS -->
+        <script src="{{ asset('assets') }}/libs/apexcharts/apexcharts.min.js"></script>
 
-    <!-- for basic area chart -->
-    <!-- <script src="https://apexcharts.com/samples{{ asset('assets') }}/stock-prices.js"></script> -->
+        <!-- Datatable Demo App Js -->
+        <script src="{{ asset('assets') }}/js/pages/datatable.init.js"></script>
 
-    <!-- Widgets Init Js -->
-    <!-- <script src="{{ asset('assets') }}/js/pages/dashboard.init.js"></script>   -->
+        <!-- App js-->
+        <script src="{{ asset('assets') }}/js/app.js"></script>
 
-    <!-- Datatable Demo App Js -->
-    <!-- <script src="{{ asset('assets') }}/js/pages/datatable.init.js"></script> -->
+        <!-- Script Component-->
+        @livewireScripts
+        <!-- Apexcharts JS -->
+        <script src="{{ asset('assets') }}/libs/apexcharts/apexcharts.min.js"></script>
 
-    <!-- App js-->
-    <!-- <script src="{{ asset('assets') }}/js/app.js"></script> -->
+        <script src="{{ asset('assets') }}/js/pages/dashboard.init.js"></script>
+    @else
+        @livewireScripts
+    @endif
 
-    <!-- Script Component-->
-    @livewireScripts
-    <!-- Apexcharts JS -->
-    <!-- <script src="{{ asset('assets') }}/libs/apexcharts/apexcharts.min.js"></script> -->
-
-    <!-- for basic area chart -->
-    <!-- <script src="https://apexcharts.com/samples/assets/stock-prices.js"></script> -->
-
-    <!-- <script src="{{ asset('assets') }}/js/pages/dashboard.init.js"></script> -->
 </body>
 </html>
