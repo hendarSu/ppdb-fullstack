@@ -141,9 +141,6 @@
         <!-- Apexcharts JS -->
         <script src="{{ asset('assets') }}/libs/apexcharts/apexcharts.min.js"></script>
 
-        <!-- Datatable Demo App Js -->
-        <script src="{{ asset('assets') }}/js/pages/datatable.init.js"></script>
-
         <!-- App js-->
         <script src="{{ asset('assets') }}/js/app.js"></script>
 

@@ -118,6 +118,18 @@ return [
     |
     */
 
+    // 'providers' => [
+    //     // ...existing code...
+    //     Livewire\LivewireServiceProvider::class,
+    //     Maatwebsite\Excel\ExcelServiceProvider::class,
+    // ],
+
+    // 'aliases' => [
+    //     // ...existing code...
+    //     'Livewire' => Livewire\Livewire::class,
+    //     'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+    // ],
+
     'maintenance' => [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
