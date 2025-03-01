@@ -43,7 +43,6 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-
                     <div class="card-body pt-1">
                         <ul class="nav nav-underline border-bottom" id="pills-tab" role="tablist">
                             <li class="nav-item" role="presentation">
@@ -75,16 +74,34 @@
                                                 <div class="card-header bg-transparent border-secondary">
                                                     <div class="d-flex justify-content-between">
                                                         <h4 class="card-title mb-0">{{ $student->name }}</h4>
-                                                        <h5><span class="badge text-bg-secondary">{{ $student->status }}</span></h5>
+                                                        @if($student->status == 'pending')
+                                                            <span class="badge bg-secondary">MENUNGGU</span>
+                                                        @elseif($student->status == 'approved')
+                                                            <span class="badge bg-success">DISETUJUI</span>
+                                                        @elseif($student->status == 'rejected')
+                                                            <span class="badge bg-danger">DITOLAK</span>
+                                                        @else
+                                                            <span class="badge bg-dark">{{ strtoupper($student->status) }}</span>
+                                                        @endif
                                                     </div>
                                                 </div>
                                                 <div class="card-body">
-                                                    <p class="text-muted">Gender: {{ $student->gender }}</p>
-                                                    <p class="text-muted">Birth Date: {{ $student->birth_date }}</p>
-                                                    <p class="text-muted">Birth Place: {{ $student->birth_place }}</p>
+                                                    <table class="table table-borderless">
+                                                        <tr>
+                                                            <td class="text-muted">Jenis Kelamin</td>
+                                                            <td width="1">:</td>
+                                                            <td>{{ $student->gender }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="text-muted">Tempat, Tanggal Lahir</td>
+                                                            <td width="1">:</td>
+                                                            <td>{{ $student->birth_place }}, {{ $student->birth_date }}</td>
+                                                        </tr>
+
+                                                    </table>
                                                 </div><!-- end card body -->
                                                 <div class="card-footer bg-transparent border-secondary">
-                                                    <a href="{{ url('/profile/student', $student->id) }}" class="btn btn-secondary w-100">Detail</a>
+                                                    <a href="{{ url('/profile/student', $student->id) }}" class="btn btn-secondary btn-sm w-100">Detail</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -113,3 +130,4 @@
     </div>
     <!-- container-fluid -->
 </div>
+

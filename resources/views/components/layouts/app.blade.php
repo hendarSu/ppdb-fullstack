@@ -132,7 +132,6 @@
     </div>
     <!-- END wrapper -->
 
-    @if( $isPortal)
         <!-- Vendor -->
         <script src="{{ asset('assets') }}/libs/jquery/jquery.min.js"></script>
         <script src="{{ asset('assets') }}/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -161,9 +160,5 @@
         <script src="{{ asset('assets') }}/libs/apexcharts/apexcharts.min.js"></script>
 
         <script src="{{ asset('assets') }}/js/pages/dashboard.init.js"></script>
-    @else
-        @livewireScripts
-    @endif
-
 </body>
 </html>

@@ -19,25 +19,41 @@
                     <h5 class="card-title mb-0">Langkah 1: Input Data</h5>
                 </div>
                 <div class="card-body">
-                    <div class="mb-3">
-                        <label class="form-label">NIK</label>
-                        <input type="text" class="form-control" wire:model="parent.nik">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Nama</label>
-                        <input type="text" class="form-control" wire:model="parent.name">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Email</label>
-                        <input type="email" class="form-control" wire:model="parent.email">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Telepon</label>
-                        <input type="text" class="form-control" wire:model="parent.phone">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">NIK</label>
+                                <input type="text" class="form-control" wire:model="parent.nik">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Nama</label>
+                                <input type="text" class="form-control" wire:model="parent.name">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" wire:model="parent.email">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Telepon</label>
+                                <input type="text" class="form-control" wire:model="parent.phone">
+                            </div>
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Alamat</label>
                         <textarea class="form-control" wire:model="parent.address"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Batch</label>
+                        <select wire:model="batch_id" id="batch_id" class="form-control" required>
+                            <option value="">Pilih Batch</option>
+                            @foreach($batches as $batch)
+                                <option value="{{ $batch->id }}">{{ $batch->name }} ({{ $batch->start_date }} - {{ $batch->end_date }})</option>
+                            @endforeach
+                        </select>
+                        @error('batch_id') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Calon Siswa</label>

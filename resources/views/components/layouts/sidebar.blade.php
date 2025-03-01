@@ -68,6 +68,12 @@
                 </li>
                 <li class="menu-title">Pengaturan</li>
                 <li>
+                    <a href="/batches">
+                        <i class="mdi mdi-calendar-blank"></i>
+                        <span>Gelombang Pendaftaran</span>
+                    </a>
+                </li>
+                <li>
                     <a href="/payment-gateway-settings">
                         <i class="mdi mdi-cog"></i>
                         <span>Payment Gateway</span>

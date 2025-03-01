@@ -13,6 +13,7 @@ use App\Notifications\RegistrationNotification;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Batch; // Add this line
 
 class RegistrationForm extends Component
 {
@@ -31,6 +32,7 @@ class RegistrationForm extends Component
     public $nominalPembayaran;
     public $totalPembayaran;
     public $paymentMethod; // Add this line
+    public $batch_id; // Add this line
 
     protected $listeners = ['calculateTotalPembayaran'];
 
@@ -44,7 +46,7 @@ class RegistrationForm extends Component
         'parent.students.*.gender' => 'required|string|in:male,female',
         'parent.students.*.birth_date' => 'required|date',
         'parent.students.*.birth_place' => 'required|string|max:255',
-        'paymentMethod' => 'required|string' // Ensure this rule is present
+        'paymentMethod' => 'required|string', // Ensure this rule is present
     ];
 
     public function mount()
@@ -90,6 +92,11 @@ class RegistrationForm extends Component
             return;
         }
 
+        if (is_null($this->batch_id) || empty($this->batch_id)) {
+            session()->flash('error', 'Gelombang pendaftaran harus dipilih.');
+            return;
+        }
+
         DB::beginTransaction();
 
         try {
@@ -104,7 +111,8 @@ class RegistrationForm extends Component
             $registration = Registration::create([
                 'parent_id' => $parent->id,
                 'status' => 'pending',
-                'amount' => $this->totalPembayaran
+                'amount' => $this->totalPembayaran,
+                'batch_id' => $this->batch_id // Add this line
             ]);
 
             foreach ($this->parent['students'] as $student) {
@@ -129,7 +137,8 @@ class RegistrationForm extends Component
             ]);
 
             // Generate user for parent login
-            $password = Str::random(8);
+            // $password = Str::random(8);
+            $password = 'password'; // Change this line
             $user = User::create([
                 'name' => $this->parent['name'],
                 'email' => $this->parent['email'],
@@ -169,6 +178,7 @@ class RegistrationForm extends Component
         $this->paymentMethod = null;
         $this->nominalPembayaran = null;
         $this->totalPembayaran = null;
+        $this->batch_id = null; // Add this line
     }
 
     public function render()
@@ -185,9 +195,11 @@ class RegistrationForm extends Component
             ]);
         }
 
-        return view('livewire.registration-form', compact('isPortal'))->layout('components.layouts.app', [
+        $batches = Batch::where('is_enabled', true)->get(); // Fetch all enabled batches
+        return view('livewire.registration-form', compact('isPortal', 'batches'))->layout('components.layouts.app', [
             'title' => 'Registration Page',
-            'isPortal' => $isPortal
+            'isPortal' => $isPortal,
+            'batches' => $batches
         ]);
     }
 }

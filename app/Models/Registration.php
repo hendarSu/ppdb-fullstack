@@ -9,7 +9,7 @@ class Registration extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['parent_id', 'status', 'amount'];
+    protected $fillable = ['parent_id', 'status', 'amount', 'batch_id'];
 
     public function parent()
     {
@@ -24,5 +24,10 @@ class Registration extends Model
     public function payments()
     {
         return $this->hasMany(Payment::class);
+    }
+
+    public function batch()
+    {
+        return $this->belongsTo(Batch::class);
     }
 }
