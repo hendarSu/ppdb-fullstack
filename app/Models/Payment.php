@@ -9,7 +9,7 @@ class Payment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['registration_id', 'method', 'status', 'amount'];
+    protected $fillable = ['registration_id', 'method', 'status', 'amount', 'snap_token', 'payment_reference', 'snap_url'];
 
     public function registration()
     {

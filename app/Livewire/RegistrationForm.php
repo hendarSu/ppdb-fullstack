@@ -7,6 +7,7 @@ use App\Models\ParentModel;
 use App\Models\Student;
 use App\Models\Registration;
 use App\Models\Payment;
+use App\Models\PaymentGatewaySetting; // Add this line
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\RegistrationNotification;
@@ -14,6 +15,8 @@ use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Batch; // Add this line
+use Midtrans\Config; // Add this line
+use Midtrans\Snap; // Add this line
 
 class RegistrationForm extends Component
 {
@@ -129,7 +132,7 @@ class RegistrationForm extends Component
                 $registration->students()->attach($studentModel->id);
             }
 
-            Payment::create([
+            $payment = Payment::create([
                 'registration_id' => $registration->id,
                 'method' => $this->paymentMethod,
                 'status' => 'pending',
@@ -146,16 +149,44 @@ class RegistrationForm extends Component
                 'isAdmin' => false
             ]);
 
-            DB::commit();
+            // Midtrans integration
+            $midtransConfig = PaymentGatewaySetting::where('provider', 'midtrans')->where('is_enabled', true)->first();
+            if ($midtransConfig) {
+                Config::$serverKey = $midtransConfig->server_key;
+                Config::$isProduction = $midtransConfig->is_production;
+                Config::$isSanitized = true;
+                Config::$is3ds = true;
 
-            // Send notification with login details
-            Notification::route('mail', $this->parent['email'])->notify(new RegistrationNotification($registration, $user->email, $password));
+                $params = [
+                    'transaction_details' => [
+                        'order_id' => $payment->id,
+                        'gross_amount' => $this->totalPembayaran,
+                    ],
+                    'customer_details' => [
+                        'first_name' => $this->parent['name'],
+                        'email' => $this->parent['email'],
+                        'phone' => $this->parent['phone'],
+                    ],
+                ];
 
-            // Reset form
-            $this->resetForm();
+                $snapToken = Snap::getSnapToken($params);
+                $redirect_url = 'https://app.sandbox.midtrans.com/snap/v2/vtweb/' . $snapToken;
 
-            // Redirect or show success message
-            session()->flash('message', 'Pendaftaran berhasil!, Silahkan cek email Anda untuk detail login dan kelengkapan Administrasi.');
+                $payment->snap_token = $snapToken;
+                $payment->snap_url = $redirect_url;
+                $payment->save();
+
+                DB::commit();
+
+                // Send notification with login details
+                Notification::route('mail', $this->parent['email'])->notify(new RegistrationNotification($registration, $user->email, $password));
+
+                // Reset form
+                // $this->resetForm();
+                return redirect($redirect_url);
+            } else {
+                throw new \Exception('Midtrans configuration not found or not enabled.');
+            }
         } catch (\Exception $e) {
             DB::rollBack();
             session()->flash('error', 'Pendaftaran gagal: ' . $e->getMessage());
