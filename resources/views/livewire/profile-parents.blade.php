@@ -101,7 +101,8 @@
                                                     </table>
                                                 </div><!-- end card body -->
                                                 <div class="card-footer bg-transparent border-secondary">
-                                                    <a href="{{ url('/profile/student', $student->id) }}" class="btn btn-secondary btn-sm w-100">Detail</a>
+                                                        <a href="{{ url('/profile/student/print', $student->id) }}" class="btn btn-primary btn-sm w-100 mt-2">Cetak Kartu</a>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -111,7 +112,50 @@
 
                             <div class="tab-pane pt-4" id="profile_experience" role="tabpanel" aria-labelledby="profile_experience_tab">
                                 <div class="row">
-
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <h6>Riwayat Pembayaran</h6>
+                                        <a href="{{ url('/payment/new') }}" class="btn btn-primary">Tambah Pembayaran</a>
+                                    </div>
+                                     <table class="table table-bordered">
+                                          <thead>
+                                                <tr>
+                                                     <th>ID Pembayaran</th>
+                                                     <th>Tanggal</th>
+                                                     <th>Metode</th>
+                                                     <th>Status</th>
+                                                     <th>Jumlah</th>
+                                                     <th>Aksi</th>
+                                                </tr>
+                                          </thead>
+                                          <tbody>
+                                                @foreach($paymentHistory as $payment)
+                                                     <tr>
+                                                          <td>#{{ $payment->id }}</td>
+                                                          <td>{{ $payment->created_at }}</td>
+                                                          <td>{{ $payment->method }}</td>
+                                                          <td>
+                                                              @if($payment->status == 'pending')
+                                                                  <span class="badge bg-secondary">Menunggu Pembayaran</span>
+                                                              @elseif($payment->status == 'paid')
+                                                                  <span class="badge bg-success">Sudah Dibayar</span>
+                                                              @elseif($payment->status == 'failed')
+                                                                  <span class="badge bg-danger">GAGAL</span>
+                                                              @else
+                                                                  <span class="badge bg-dark">{{ strtoupper($payment->status) }}</span>
+                                                              @endif
+                                                          </td>
+                                                          <td>Rp. {{ number_format($payment->amount, 0, ',', '.') }}</td>
+                                                          <td>
+                                                              @if($payment->status == 'pending')
+                                                                  <a href="{{ $payment->snap_url }}" class="btn btn-primary btn-sm">Bayar</a>
+                                                              @else
+                                                                  <span class="text-muted">N/A</span>
+                                                              @endif
+                                                          </td>
+                                                     </tr>
+                                                @endforeach
+                                          </tbody>
+                                     </table>
                                 </div>
                             </div> <!-- end Experience -->
 

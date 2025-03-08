@@ -20,4 +20,9 @@ class Student extends Model
     {
         return $this->belongsToMany(Registration::class, 'student_registrations');
     }
+
+    public function studentRegistration()
+    {
+        return $this->hasOne(StudentRegistration::class, 'student_id');
+    }
 }

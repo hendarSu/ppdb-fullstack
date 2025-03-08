@@ -37,6 +37,7 @@ class RegistrationForm extends Component
     public $totalPembayaran;
     public $paymentMethod; // Add this line
     public $batch_id; // Add this line
+    public $paymentHistory = []; // Add this line
 
     protected $listeners = ['calculateTotalPembayaran'];
 
@@ -56,6 +57,7 @@ class RegistrationForm extends Component
     public function mount()
     {
         $this->calculateTotalPembayaran();
+        $this->loadPaymentHistory(); // Add this line
     }
 
     public function addStudent()
@@ -190,6 +192,7 @@ class RegistrationForm extends Component
 
                 // Reset form
                 // $this->resetForm();
+                $this->loadPaymentHistory(); // Add this line
                 return redirect($redirect_url);
             } else {
                 throw new \Exception('Midtrans configuration not found or not enabled.');
@@ -197,6 +200,18 @@ class RegistrationForm extends Component
         } catch (\Exception $e) {
             DB::rollBack();
             session()->flash('error', 'Pendaftaran gagal: ' . $e->getMessage());
+        }
+    }
+
+    public function loadPaymentHistory() // Add this method
+    {
+        $user = auth()->user();
+        $parent = ParentModel::where('email', $user->email)->first();
+        if ($parent) {
+            $registrations = Registration::where('parent_id', $parent->id)->with('payments')->get();
+            $this->paymentHistory = $registrations->flatMap->payments;
+        } else {
+            $this->paymentHistory = collect();
         }
     }
 
@@ -229,15 +244,17 @@ class RegistrationForm extends Component
             return view('livewire.profile-parents', compact('userProfile'))->layout('components.layouts.app', [
                 'title' => 'Profile Page',
                 'isPortal' => $isPortal,
-                'userProfile' => $userProfile
+                'userProfile' => $userProfile,
+                'paymentHistory' => $this->paymentHistory // Ensure this line is present
             ]);
         }
 
         $batches = Batch::where('is_enabled', true)->get(); // Fetch all enabled batches
-        return view('livewire.registration-form', compact('isPortal', 'batches'))->layout('components.layouts.app', [
+        return view('livewire.registration-form', compact('isPortal', 'batches', 'paymentHistory'))->layout('components.layouts.app', [
             'title' => 'Registration Page',
             'isPortal' => $isPortal,
-            'batches' => $batches
+            'batches' => $batches,
+            'paymentHistory' => $this->paymentHistory // Ensure this line is present
         ]);
     }
 }
