@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Batch; // Add this line
 use Midtrans\Config; // Add this line
 use Midtrans\Snap; // Add this line
+use App\Models\StudentRegistration; // Add this line
 
 class RegistrationForm extends Component
 {
@@ -129,7 +130,13 @@ class RegistrationForm extends Component
                     'stage' => 'data review'
                 ]);
 
-                $registration->students()->attach($studentModel->id);
+                // $registration->students()->attach($studentModel->id);
+                // Insert registration code into student_registrations
+                StudentRegistration::create([
+                    'registration_id' => $registration->id,
+                    'student_id' => $studentModel->id,
+                    'registration_code' => (new StudentRegistration)->generateRegistrationCode()
+                ]);
             }
 
             $payment = Payment::create([
